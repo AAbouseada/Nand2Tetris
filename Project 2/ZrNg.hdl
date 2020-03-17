@@ -1,0 +1,40 @@
+/**
+ * This chip Calculates if the sum of a 16 digit binary code is zero or negative
+ * Author: AAbouseada
+ * Version: 20200202
+ */
+
+// checks a 16 bit input to seeif the a Zero flag and/or a negative flag so that they 
+// can detect when the sum is zero or negative.
+
+// if(sum(in) == 0) set zr = 1
+// if(sum(in) < 0) set ng = 1 
+
+CHIP ZrNg {
+    IN
+	z[16]; // 16-bit inputs
+
+    OUT
+	zr,	 // 1 if (out == 0), 0 otherwise
+	ng;	 // 1 if (out < 0), 0 otherwise
+
+    PARTS:
+	Or(a=z[0],b=z[1],out=z01);
+	Or(a=z01,b=z[2],out=z02);
+	Or(a=z02,b=z[3],out=z03);
+	Or(a=z03,b=z[4],out=z04);
+	Or(a=z04,b=z[5],out=z05);
+	Or(a=z05,b=z[6],out=z06);
+	Or(a=z06,b=z[7],out=z07);
+	Or(a=z07,b=z[8],out=z08);
+	Or(a=z08,b=z[9],out=z09);
+	Or(a=z09,b=z[10],out=z010);
+	Or(a=z010,b=z[11],out=z011);
+	Or(a=z011,b=z[12],out=z012);
+	Or(a=z012,b=z[13],out=z013);
+	Or(a=z013,b=z[14],out=z014);
+	Or(a=z014,b=z[15],out=nzr);
+	Not(in=nzr,out=zr);
+	Or(a=z[15],out=ng);
+
+}
