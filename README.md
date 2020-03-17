@@ -2,7 +2,7 @@
 https://www.nand2tetris.org/
 Project 1: 
   Gates Created: 
-    And.hdl 
+    And.hdl\n
     And16.hdl 
     DMux.hdl 
     DMux4Way.hdl 
